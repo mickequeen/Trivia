@@ -12,17 +12,17 @@ function getTrivia() {
     })
     .then(function(categories) {
       var firstQuestion = categories.results[0].question;
-      $('#container').append(firstQuestion);
+      $('#questions').append(firstQuestion);
       let categorie = categories.results[0];
       let arrAnswers = [];
       arrAnswers.push(categorie.correct_answer);
-      $('#container').append(`
-            <li class="correct"><button>${arrAnswers}</button></li>
+      $('#questions').append(`
+            <li class="correct"><button class="btn btn-default btn-block">${arrAnswers}</button></li>
       `);
       let incorrect = categorie.incorrect_answers;
       incorrect.forEach((mala, i) => {
-        $('#container').append(`
-            <li class="incorrect"><button>${mala}</button></li>
+        $('#questions').append(`
+            <li class="incorrect"><button class="btn btn-default btn-block">${mala}</button></li>
         `);
       });
     });

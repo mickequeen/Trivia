@@ -10,3 +10,11 @@ main{
 li {
   list-style: none;
 }
+
+body{
+  text-align: center;
+}
+
+.btn-block{
+  margin-bottom: 0.8em;
+}

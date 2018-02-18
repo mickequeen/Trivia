@@ -1,9 +1,8 @@
-const btnStart = document.getElementById('btnStart');
 
-btnStart.addEventListener('click', function(event) {
+$('#btnStart').click(function(event) {
   let evento = event.target;
   getTrivia();
-})
+});
 
 function getTrivia() {
   fetch(`https://opentdb.com/api.php?amount=10`)

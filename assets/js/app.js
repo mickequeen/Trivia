@@ -5,6 +5,11 @@ function puntajeT(cont) {
   if (cont === 11) {
     alert('tu puntaje es: ' + puntaje);
     $('#questions').empty();
+    $('#questions').append(`
+      <h1>TU PUNTAJE ES:</h1>
+      <h2>${puntaje}</h2>
+      <a href="index.html"><button id="volver">Volver a jugar</button></a>
+    `);
   } else {
     getTrivia();
   }

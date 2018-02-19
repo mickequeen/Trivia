@@ -1,33 +1,21 @@
-var cont = 0;
-var puntaje = 0;
-
-function puntajeT(cont) {
-  if (cont === 11) {
-    alert('tu puntaje es: ' + puntaje);
-    $('#questions').empty();
-    $('#questions').append(`
-      <h1>TU PUNTAJE ES:</h1>
-      <h2>${puntaje}</h2>
-      <a href="index.html"><button id="volver" class="btn btn-success">Volver a jugar</button></a>
-    `);
-  } else {
-    getTrivia();
-  }
-}
 
 $('#btnStart').click(function(event) {
   let evento = event.target;
   $('#questions').empty();
   getTrivia();
 });
+var cont= 0;
+var good = 0;
+var bad = 0;
 
 function getTrivia() {
-  fetch(`https://opentdb.com/api.php?amount=10&category=29`)
+  fetch(`https://opentdb.com/api.php?amount=50&category=15`)
     .then(function(response) {
       if(cont == 0 ){
-        $('#btnStart').html('Next <i class="fas fa-angle-double-right"></i>');
-      } if(cont >= 9){
-        $('#btnStart').attr('disabled', 'disabled');
+        $('#btnStart').addClass('hide')
+      } if(cont === 10){
+        $('#questions').addClass('hide');
+        $('#result').append('<h1><i class="fas fa-check"></i> Correct: ' + good + '<br><i class="fas fa-times"></i> Wrong: ' + bad +'</h1>');
       }
       console.log(cont)
     // Turns the the JSON into a JS object
@@ -45,26 +33,22 @@ function getTrivia() {
       let incorrect = categorie.incorrect_answers;
       incorrect.forEach((mala, i) => {
         $('#questions').append(`
-            <li><button id="incorrect" class="btn btn-default btn-block">${mala}</button></li>
+            <li><button class="btn btn-default btn-block incorrect">${mala}</button></li>
         `);
-      })
-      /* funcion para tomar el puntaje */
-      $('button').click(function () {
-        var id = $(this).attr('id');
-        if (id === 'correct') {
-          puntaje = puntaje + 100;
-          $('#questions').empty();
-          cont++;
-          console.log(cont);
-          puntajeT(cont);
-        } else if (id === 'incorrect') {
-          puntaje -= 100;
-          $('#questions').empty();
-          cont++;
-          console.log(cont);
-          puntajeT(cont);
-        }
-        console.log(puntaje);
+      });cont++
+      
+      $('#correct').click(function(){
+        good ++
+      console.log('correctas' + good);
+      $('#questions').empty();
+      getTrivia()
+      });
+      $('.incorrect').click(function(){
+      bad ++
+      console.log('incorrectas: ' + bad);
+      $('#questions').empty();
+      getTrivia()
       })
     });
+
 }

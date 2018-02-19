@@ -5,6 +5,8 @@
 main{
   background: linear-gradient(to bottom, #FFFFFF , #A7E7AA);
     height: 100vh;
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 20px;
 }
 
 li {
@@ -17,4 +19,25 @@ body{
 
 .btn-block{
   margin-bottom: 0.8em;
+}
+
+.hide{
+  display: none;
+}
+
+#result{
+  font-family: 'Neucha', cursive;
+}
+
+#questions{
+  
+  font-weight: bolder;
+}
+
+.fa-check{
+  color: #48B677;
+}
+
+.fa-times{
+  color: #E75F5F;
 }

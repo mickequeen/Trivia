@@ -8,7 +8,7 @@ function puntajeT(cont) {
     $('#questions').append(`
       <h1>TU PUNTAJE ES:</h1>
       <h2>${puntaje}</h2>
-      <a href="index.html"><button id="volver">Volver a jugar</button></a>
+      <a href="index.html"><button id="volver" class="btn btn-success">Volver a jugar</button></a>
     `);
   } else {
     getTrivia();

@@ -1,12 +1,19 @@
 
 $('#btnStart').click(function(event) {
   let evento = event.target;
+  $('#questions').empty();
   getTrivia();
 });
-
+var cont= 0;
 function getTrivia() {
-  fetch(`https://opentdb.com/api.php?amount=10`)
+  fetch(`https://opentdb.com/api.php?amount=10&category=29`)
     .then(function(response) {
+      if(cont == 0 ){
+        $('#btnStart').html('Next <i class="fas fa-angle-double-right"></i>');
+      } if(cont >= 9){
+        $('#btnStart').attr('disabled', 'disabled')
+      }
+      console.log(cont)
     // Turns the the JSON into a JS object
       return response.json();
     })
@@ -24,6 +31,6 @@ function getTrivia() {
         $('#questions').append(`
             <li class="incorrect"><button class="btn btn-default btn-block">${mala}</button></li>
         `);
-      });
+      });cont++
     });
 }

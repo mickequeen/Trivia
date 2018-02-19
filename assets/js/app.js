@@ -11,7 +11,7 @@ function getTrivia() {
       if(cont == 0 ){
         $('#btnStart').html('Next <i class="fas fa-angle-double-right"></i>');
       } if(cont >= 9){
-        $('#btnStart').attr('disabled', 'disabled')
+        $('#btnStart').attr('disabled', 'disabled');
       }
       console.log(cont)
     // Turns the the JSON into a JS object

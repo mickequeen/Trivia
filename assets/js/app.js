@@ -1,10 +1,21 @@
+var cont = 0;
+var puntaje = 0;
+
+function puntajeT(cont) {
+  if (cont === 11) {
+    alert('tu puntaje es: ' + puntaje);
+    $('#questions').empty();
+  } else {
+    getTrivia();
+  }
+}
 
 $('#btnStart').click(function(event) {
   let evento = event.target;
   $('#questions').empty();
   getTrivia();
 });
-var cont= 0;
+
 function getTrivia() {
   fetch(`https://opentdb.com/api.php?amount=10&category=29`)
     .then(function(response) {
@@ -24,13 +35,31 @@ function getTrivia() {
       let arrAnswers = [];
       arrAnswers.push(categorie.correct_answer);
       $('#questions').append(`
-            <li class="correct"><button class="btn btn-default btn-block">${arrAnswers}</button></li>
+            <li><button id="correct" class="btn btn-default btn-block">${arrAnswers}</button></li>
       `);
       let incorrect = categorie.incorrect_answers;
       incorrect.forEach((mala, i) => {
         $('#questions').append(`
-            <li class="incorrect"><button class="btn btn-default btn-block">${mala}</button></li>
+            <li><button id="incorrect" class="btn btn-default btn-block">${mala}</button></li>
         `);
-      });cont++
+      })
+      /* funcion para tomar el puntaje */
+      $('button').click(function () {
+        var id = $(this).attr('id');
+        if (id === 'correct') {
+          puntaje = puntaje + 100;
+          $('#questions').empty();
+          cont++;
+          console.log(cont);
+          puntajeT(cont);
+        } else if (id === 'incorrect') {
+          puntaje -= 100;
+          $('#questions').empty();
+          cont++;
+          console.log(cont);
+          puntajeT(cont);
+        }
+        console.log(puntaje);
+      })
     });
 }
